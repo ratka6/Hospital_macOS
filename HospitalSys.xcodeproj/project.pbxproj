@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2005502C1DE711B20094A400 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502B1DE711B20094A400 /* ContainerViewController.swift */; };
+		2005502E1DE711FD0094A400 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502D1DE711FD0094A400 /* LoginViewController.swift */; };
+		200550301DE7120E0094A400 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502F1DE7120E0094A400 /* RegisterViewController.swift */; };
 		20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D761DE5D33E00987C2C /* AppDelegate.swift */; };
 		20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D7A1DE5D33E00987C2C /* HospitalSys.xcdatamodeld */; };
 		20BC4D7E1DE5D33E00987C2C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20BC4D7D1DE5D33E00987C2C /* Assets.xcassets */; };
@@ -33,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2005502B1DE711B20094A400 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		2005502D1DE711FD0094A400 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2005502F1DE7120E0094A400 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		20BC4D731DE5D33E00987C2C /* HospitalSys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HospitalSys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20BC4D761DE5D33E00987C2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20BC4D7B1DE5D33E00987C2C /* HospitalSys.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HospitalSys.xcdatamodel; sourceTree = "<group>"; };
@@ -100,6 +106,9 @@
 				20BC4D7F1DE5D33E00987C2C /* Main.storyboard */,
 				20BC4D821DE5D33E00987C2C /* Info.plist */,
 				20BC4D7A1DE5D33E00987C2C /* HospitalSys.xcdatamodeld */,
+				2005502B1DE711B20094A400 /* ContainerViewController.swift */,
+				2005502D1DE711FD0094A400 /* LoginViewController.swift */,
+				2005502F1DE7120E0094A400 /* RegisterViewController.swift */,
 			);
 			path = HospitalSys;
 			sourceTree = "<group>";
@@ -255,7 +264,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2005502E1DE711FD0094A400 /* LoginViewController.swift in Sources */,
+				200550301DE7120E0094A400 /* RegisterViewController.swift in Sources */,
 				20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */,
+				2005502C1DE711B20094A400 /* ContainerViewController.swift in Sources */,
 				20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
