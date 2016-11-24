@@ -14,6 +14,7 @@
 		20BC4D811DE5D33E00987C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20BC4D7F1DE5D33E00987C2C /* Main.storyboard */; };
 		20BC4D8C1DE5D33F00987C2C /* HospitalSysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D8B1DE5D33F00987C2C /* HospitalSysTests.swift */; };
 		20BC4D971DE5D33F00987C2C /* HospitalSysUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D961DE5D33F00987C2C /* HospitalSysUITests.swift */; };
+		20BC4DA51DE5D71000987C2C /* SecondVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4DA41DE5D71000987C2C /* SecondVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		20BC4D921DE5D33F00987C2C /* HospitalSysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitalSysUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20BC4D961DE5D33F00987C2C /* HospitalSysUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalSysUITests.swift; sourceTree = "<group>"; };
 		20BC4D981DE5D33F00987C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20BC4DA41DE5D71000987C2C /* SecondVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				20BC4D7F1DE5D33E00987C2C /* Main.storyboard */,
 				20BC4D821DE5D33E00987C2C /* Info.plist */,
 				20BC4D7A1DE5D33E00987C2C /* HospitalSys.xcdatamodeld */,
+				20BC4DA41DE5D71000987C2C /* SecondVC.swift */,
 			);
 			path = HospitalSys;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 			files = (
 				20BC4D791DE5D33E00987C2C /* ViewController.swift in Sources */,
 				20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */,
+				20BC4DA51DE5D71000987C2C /* SecondVC.swift in Sources */,
 				20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -500,6 +504,7 @@
 				20BC4D9D1DE5D33F00987C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20BC4D9E1DE5D33F00987C2C /* Build configuration list for PBXNativeTarget "HospitalSysTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +513,7 @@
 				20BC4DA01DE5D33F00987C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20BC4DA11DE5D33F00987C2C /* Build configuration list for PBXNativeTarget "HospitalSysUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +522,7 @@
 				20BC4DA31DE5D33F00987C2C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
