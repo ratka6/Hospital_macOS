@@ -10,9 +10,12 @@ import Cocoa
 
 class ViewController: NSViewController {
 
+    @IBOutlet weak var containerView: NSView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -21,7 +24,17 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "embeded" {
+            if let destinationVC = segue.destinationController as? FirstVC {
+                print("****")
+                destinationVC.containerView = self.containerView
+            }
+        }
+    }
 
+    
 
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		200550291DE70A350094A400 /* FirstVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200550271DE70A350094A400 /* FirstVC.swift */; };
 		20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D761DE5D33E00987C2C /* AppDelegate.swift */; };
 		20BC4D791DE5D33E00987C2C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D781DE5D33E00987C2C /* ViewController.swift */; };
 		20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D7A1DE5D33E00987C2C /* HospitalSys.xcdatamodeld */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		200550271DE70A350094A400 /* FirstVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstVC.swift; sourceTree = "<group>"; };
 		20BC4D731DE5D33E00987C2C /* HospitalSys.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HospitalSys.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20BC4D761DE5D33E00987C2C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20BC4D781DE5D33E00987C2C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				20BC4D821DE5D33E00987C2C /* Info.plist */,
 				20BC4D7A1DE5D33E00987C2C /* HospitalSys.xcdatamodeld */,
 				20BC4DA41DE5D71000987C2C /* SecondVC.swift */,
+				200550271DE70A350094A400 /* FirstVC.swift */,
 			);
 			path = HospitalSys;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				20BC4D791DE5D33E00987C2C /* ViewController.swift in Sources */,
 				20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */,
 				20BC4DA51DE5D71000987C2C /* SecondVC.swift in Sources */,
+				200550291DE70A350094A400 /* FirstVC.swift in Sources */,
 				20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
