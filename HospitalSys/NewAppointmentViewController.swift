@@ -143,6 +143,8 @@ class NewAppointmentViewController: NSViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        infoLabel.stringValue = ""
+        progressIndicator.isHidden = true
         setup()
         if let doctors = doctors {
             for doctor in doctors {
