@@ -851,9 +851,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4I-sO-H5e">
+                                <rect key="frame" x="356" y="74" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Ud-kf-Xub">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteButtonClicked:" target="46q-tB-ctE" id="YRP-ZL-WaL"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="deleteButton" destination="W4I-sO-H5e" id="LBP-5G-QEl"/>
                         <outlet property="visitsTableView" destination="m2X-f5-92S" id="R2J-Hk-3KV"/>
                     </connections>
                 </viewController>
@@ -957,6 +969,14 @@
                                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="pya-LH-YXN">
                                         <rect key="frame" x="198" y="15" width="32" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <contentFilters>
+                                            <ciFilter name="CIWhitePointAdjust">
+                                                <configuration>
+                                                    <ciColor key="inputColor" red="0.49684674896481446" green="0.66529589287688251" blue="0.6719820023818337" alpha="1"/>
+                                                    <null key="inputImage"/>
+                                                </configuration>
+                                            </ciFilter>
+                                        </contentFilters>
                                     </progressIndicator>
                                 </subviews>
                                 <constraints>

@@ -20,11 +20,23 @@ class ScheduledVisit {
 
 class VisitsViewController: NSViewController {
     
-    let schedule = [ScheduledVisit("27.09.2016", doctorsName: "dr Lubicz"),
+    var schedule = [ScheduledVisit("27.09.2016", doctorsName: "dr Lubicz"),
                     ScheduledVisit("28.09.2016", doctorsName: "dr Lubicz"),
                     ScheduledVisit("29.09.2016", doctorsName: "dr Lubicz"),
                     ScheduledVisit("30.09.2016", doctorsName: "dr Lubicz")
                     ]
+    
+    @IBOutlet weak var deleteButton: NSButton!
+    
+    @IBAction func deleteButtonClicked(_ sender: Any) {
+        let selected = visitsTableView.selectedRow
+        if selected != -1 {
+            schedule.remove(at: selected)
+            visitsTableView.reloadData()
+        }
+        
+    }
+    
     
     @IBOutlet weak var visitsTableView: NSTableView! {
         didSet {

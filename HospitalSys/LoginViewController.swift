@@ -37,6 +37,8 @@ class LoginViewController: NSViewController {
         progressIndicator.isHidden = false
         progressIndicator.startAnimation(nil)
         loginButton.isEnabled = false
+        infoLabel.textColor = NSColor(red: 127.0/255.0, green: 170.0/255.0, blue: 171.0/255.0, alpha: 1)
+        infoLabel.stringValue = "Logowanie..."
     }
     
     
@@ -44,6 +46,7 @@ class LoginViewController: NSViewController {
         progressIndicator.stopAnimation(nil)
         progressIndicator.isHidden = true
         loginButton.isEnabled = true
+        infoLabel.textColor = NSColor.red
     }
     
     func loginSuccessful() {
@@ -66,7 +69,9 @@ class LoginViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLabel.stringValue = ""
+        infoLabel.textColor = NSColor.red
         progressIndicator.isHidden = true
+        
     }
     
     fileprivate func textFieldsAreValid() -> Bool{

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 private enum NetworkingConstants {
-    static let Pokemon = "http://pokeapi.co/api/v2/pokemon/1/"
+    static let Pokemon = "http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3"
 }
 
 class WebserviceConnector {
