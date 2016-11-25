@@ -31,10 +31,24 @@ class VisitsViewController: NSViewController {
     @IBAction func deleteButtonClicked(_ sender: Any) {
         let selected = visitsTableView.selectedRow
         if selected != -1 {
-            schedule.remove(at: selected)
-            visitsTableView.reloadData()
+            showDeleteAlert(selected)
         }
+    }
+    
+    fileprivate func showDeleteAlert(_ rowToDelete: Int) {
+        let alert = NSAlert()
+        alert.messageText = "Czy na pewno chcesz anulować wizytę?"
+        alert.informativeText = "Operacja jest nieodwracalna. W przypadku pomyłki należy zarezerwować ponownie - dostępność terminów nie jest gwarantowana!"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "Tak")
+        alert.addButton(withTitle: "Nie")
         
+        let response = alert.runModal()
+        if response == NSAlertFirstButtonReturn {
+            schedule.remove(at: rowToDelete)
+            visitsTableView.reloadData()
+            
+        }
     }
     
     
