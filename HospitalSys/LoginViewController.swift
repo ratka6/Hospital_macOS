@@ -12,8 +12,11 @@ class LoginViewController: NSViewController {
     
     weak var containerVC: ContainerViewController?
     
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     @IBOutlet weak var usernameTextField: NSTextField!
+    
+    @IBOutlet weak var loginButton: NSButton!
     
     @IBOutlet weak var passwordTextField: NSSecureTextField!
     
@@ -25,17 +28,33 @@ class LoginViewController: NSViewController {
         if textFieldsAreValid() {
             print("zalogowano")
             WebserviceConnector.login(loginVC: self)
+            startShowingProgress()
         }
         
     }
     
+    fileprivate func startShowingProgress() {
+        progressIndicator.isHidden = false
+        progressIndicator.startAnimation(nil)
+        loginButton.isEnabled = false
+    }
+    
+    
+    fileprivate func stopShowingProgress() {
+        progressIndicator.stopAnimation(nil)
+        progressIndicator.isHidden = true
+        loginButton.isEnabled = true
+    }
+    
     func loginSuccessful() {
         print("login successful")
+        stopShowingProgress()
         containerVC?.loginSuccessful()
     }
     
     func loginUnsuccessful() {
         print("login unsuccessful")
+        stopShowingProgress()
         infoLabel.stringValue = "Nie udało się zalogować"
     }
     
@@ -47,6 +66,7 @@ class LoginViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLabel.stringValue = ""
+        progressIndicator.isHidden = true
     }
     
     fileprivate func textFieldsAreValid() -> Bool{

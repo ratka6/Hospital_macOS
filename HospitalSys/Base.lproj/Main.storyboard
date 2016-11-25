@@ -780,7 +780,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="E7Q-C0-qpz">
+                                                        <tableCellView identifier="DateCellID" id="E7Q-C0-qpz">
                                                             <rect key="frame" x="1" y="1" width="150" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -813,7 +813,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="xHM-N1-Ytk">
+                                                        <tableCellView identifier="NameCellID" id="xHM-N1-Ytk">
                                                             <rect key="frame" x="154" y="1" width="252" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -954,6 +954,10 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="pya-LH-YXN">
+                                        <rect key="frame" x="198" y="15" width="32" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </progressIndicator>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="7J4-e3-9AV"/>
@@ -968,7 +972,9 @@
                     </view>
                     <connections>
                         <outlet property="infoLabel" destination="gv5-Ve-TdZ" id="VpM-op-2QO"/>
+                        <outlet property="loginButton" destination="7vv-lU-01s" id="HZ3-Ri-HJF"/>
                         <outlet property="passwordTextField" destination="XBX-X1-og8" id="3Iw-Uj-TRa"/>
+                        <outlet property="progressIndicator" destination="pya-LH-YXN" id="UGu-X9-aRY"/>
                         <outlet property="usernameTextField" destination="OWG-1y-pWc" id="slo-cu-88r"/>
                     </connections>
                 </viewController>
