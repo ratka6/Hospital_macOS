@@ -35,6 +35,13 @@ class VisitsViewController: NSViewController {
         }
     }
     
+    
+    @IBAction func makeAppointmentButtonClicked(_ sender: Any) {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let appointmentVC = storyboard.instantiateController(withIdentifier: "MakeAppointmentVC") as! NewAppointmentViewController
+        self.presentViewControllerAsSheet(appointmentVC)
+    }
+    
     fileprivate func showDeleteAlert(_ rowToDelete: Int) {
         let alert = NSAlert()
         alert.messageText = "Czy na pewno chcesz anulować wizytę?"
