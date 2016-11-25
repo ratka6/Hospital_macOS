@@ -16,9 +16,9 @@
 		20BC4D811DE5D33E00987C2C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20BC4D7F1DE5D33E00987C2C /* Main.storyboard */; };
 		20BC4D8C1DE5D33F00987C2C /* HospitalSysTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D8B1DE5D33F00987C2C /* HospitalSysTests.swift */; };
 		20BC4D971DE5D33F00987C2C /* HospitalSysUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BC4D961DE5D33F00987C2C /* HospitalSysUITests.swift */; };
+		20C38D0D1DE8826D008C5517 /* VisitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C38D0B1DE8826D008C5517 /* VisitsViewController.swift */; };
 		20D191941DE8583300C9169F /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D191931DE8583300C9169F /* BackgroundView.swift */; };
 		20D191981DE8635B00C9169F /* WebserviceConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D191971DE8635B00C9169F /* WebserviceConnector.swift */; };
-		20D1919A1DE86A2100C9169F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D191991DE86A2100C9169F /* MainViewController.swift */; };
 		34C9770C6888BE49DECC610B /* Pods_HospitalSys.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBFA94F12BD2C523FD1CA45A /* Pods_HospitalSys.framework */; };
 		3CFA13B0E62FC16947A25CF5 /* Pods_HospitalSysUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A70498808B0395730009313 /* Pods_HospitalSysUITests.framework */; };
 		44C7EF7B0F7A6D0914AE3E9C /* Pods_HospitalSysTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F69B6957A1EA8D2DBBE2F4D /* Pods_HospitalSysTests.framework */; };
@@ -58,9 +58,9 @@
 		20BC4D921DE5D33F00987C2C /* HospitalSysUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HospitalSysUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20BC4D961DE5D33F00987C2C /* HospitalSysUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalSysUITests.swift; sourceTree = "<group>"; };
 		20BC4D981DE5D33F00987C2C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20C38D0B1DE8826D008C5517 /* VisitsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitsViewController.swift; sourceTree = "<group>"; };
 		20D191931DE8583300C9169F /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
 		20D191971DE8635B00C9169F /* WebserviceConnector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebserviceConnector.swift; sourceTree = "<group>"; };
-		20D191991DE86A2100C9169F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		3A70498808B0395730009313 /* Pods_HospitalSysUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HospitalSysUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40705D29B14F7CEAA766AC0B /* Pods-HospitalSysUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSysUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSysUITests/Pods-HospitalSysUITests.release.xcconfig"; sourceTree = "<group>"; };
 		583B25090C8CECEC364ADEE4 /* Pods-HospitalSysUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HospitalSysUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HospitalSysUITests/Pods-HospitalSysUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				2005502B1DE711B20094A400 /* ContainerViewController.swift */,
 				2005502D1DE711FD0094A400 /* LoginViewController.swift */,
 				2005502F1DE7120E0094A400 /* RegisterViewController.swift */,
-				20D191991DE86A2100C9169F /* MainViewController.swift */,
+				20C38D0B1DE8826D008C5517 /* VisitsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -469,8 +469,8 @@
 				20BC4D771DE5D33E00987C2C /* AppDelegate.swift in Sources */,
 				2005502C1DE711B20094A400 /* ContainerViewController.swift in Sources */,
 				20D191981DE8635B00C9169F /* WebserviceConnector.swift in Sources */,
+				20C38D0D1DE8826D008C5517 /* VisitsViewController.swift in Sources */,
 				20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */,
-				20D1919A1DE86A2100C9169F /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
