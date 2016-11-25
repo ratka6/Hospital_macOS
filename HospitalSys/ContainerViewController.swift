@@ -12,6 +12,8 @@ class ContainerViewController: NSViewController {
 
     @IBOutlet weak var containerView: NSView!
     
+    @IBOutlet weak var backgroundView: NSView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
