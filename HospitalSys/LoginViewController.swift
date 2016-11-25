@@ -10,6 +10,8 @@ import Cocoa
 
 class LoginViewController: NSViewController {
     
+    weak var containerVC: ContainerViewController?
+    
     
     @IBOutlet weak var usernameTextField: NSTextField!
     
@@ -22,9 +24,25 @@ class LoginViewController: NSViewController {
         
         if textFieldsAreValid() {
             print("zalogowano")
+            WebserviceConnector.login(loginVC: self)
         }
         
     }
+    
+    func loginSuccessful() {
+        print("login successful")
+        containerVC?.loginSuccessful()
+    }
+    
+    func loginUnsuccessful() {
+        print("login unsuccessful")
+        infoLabel.stringValue = "Nie udało się zalogować"
+    }
+    
+    deinit {
+        print("login deinit")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

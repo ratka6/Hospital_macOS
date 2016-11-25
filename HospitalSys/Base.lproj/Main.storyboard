@@ -689,7 +689,7 @@
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="VhR-ch-ZRs">
                                 <rect key="frame" x="175" y="75" width="450" height="450"/>
                                 <connections>
-                                    <segue destination="YGg-34-Rec" kind="embed" id="0nq-zX-7M5"/>
+                                    <segue destination="YGg-34-Rec" kind="embed" id="32G-r1-xtd"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -701,13 +701,72 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="m2S-Jp-Qdl" id="gr9-84-mBs"/>
                         <outlet property="containerView" destination="VhR-ch-ZRs" id="SDh-P4-MMf"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="998"/>
+        </scene>
+        <!--Tab View Controller-->
+        <scene sceneID="B9a-RQ-bCF">
+            <objects>
+                <tabViewController storyboardIdentifier="MainTab" selectedTabViewItemIndex="0" id="QPg-8Q-1bo" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem id="Efc-xe-5iV"/>
+                        <tabViewItem identifier="" id="RGm-sz-lsC"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Ikr-8Y-6hD">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="46q-tB-ctE" kind="relationship" relationship="tabItems" id="oiL-al-RcK"/>
+                        <segue destination="COl-d7-5BY" kind="relationship" relationship="tabItems" id="8Il-Rs-0L4"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="MVx-Gp-k9c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-234" y="1862"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="cqb-YP-Rg7">
+            <objects>
+                <viewController id="COl-d7-5BY" sceneMemberID="viewController">
+                    <view key="view" id="0iR-7e-TUd">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Xtc-EU-UOo" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="408" y="2109"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="S4g-NL-DvK">
+            <objects>
+                <viewController storyboardIdentifier="MainVC" id="46q-tB-ctE" customClass="MainViewController" customModule="HospitalSys" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="jB1-Od-q0J">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cts-PT-dHf">
+                                <rect key="frame" x="198" y="216" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Main VC" id="7Ju-k6-JGp">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="RSb-kH-V4X" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="408" y="1647"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="Smu-Ms-6c0">

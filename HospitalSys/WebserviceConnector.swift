@@ -9,21 +9,29 @@
 import Foundation
 import Alamofire
 
+private enum NetworkingConstants {
+    static let Pokemon = "http://pokeapi.co/api/v2/pokemon/1/"
+}
+
 class WebserviceConnector {
     
-    class func login() {
+    class func login(loginVC: LoginViewController) {
         
-        let URL = NSURL()
+        let URL = NetworkingConstants.Pokemon
         
-        Alamofire.request(URL as! URLRequestConvertible)
+        Alamofire.request(URL)
             .validate()
             .responseJSON {
                 (response) in
                 
                 guard response.result.isSuccess else {
                     print("Login Error \(response.result.error!)")
+                    loginVC.loginUnsuccessful()
                     return
                 }
+                
+                print("bulbasaur")
+                loginVC.loginSuccessful()
         }
     }
 }

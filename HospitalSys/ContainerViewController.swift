@@ -11,12 +11,28 @@ import Cocoa
 class ContainerViewController: NSViewController {
 
     @IBOutlet weak var containerView: NSView!
-    
-    @IBOutlet weak var backgroundView: NSView!
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destinationController as? NSTabViewController {
+            if let vc = destinationVC.tabViewItems.first?.viewController as? LoginViewController {
+                vc.containerVC = self
+            }
+        }
+    }
+    
+    func loginSuccessful() {
+        let storyboard = NSStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateController(withIdentifier: "MainTab") as! NSTabViewController
+        
+        self.childViewControllers.removeAll()
+        containerView.subviews.removeAll()
+        self.addChildViewController(mainVC)
+        containerView.addSubview(mainVC.view)
+    }
+
 }
