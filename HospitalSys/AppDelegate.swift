@@ -10,10 +10,26 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-
+    
+    var httpMethods: [String]?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
+        let file = "file.txt"
+        
+        if let dir = FileManager.default.urls(for: .desktopDirectory, in: .userDomainMask).first {
+            let path = dir.appendingPathComponent(file)
+            
+            do {
+                let text = try String(contentsOf: path, encoding: String.Encoding.utf8)
+                //print(text)
+                //print("***")
+                let arr = text.components(separatedBy: "\n")
+                //print(arr)
+                httpMethods = arr
+            } catch let error {
+                print("file error \(error)")
+            }
+        }
         // Insert code here to initialize your application
     }
 

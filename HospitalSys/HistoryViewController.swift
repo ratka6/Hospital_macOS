@@ -38,6 +38,8 @@ class HistoryViewController: NSViewController {
         // Do view setup here.
     }
     
+    
+    
     fileprivate func loadFakeData() {
         patientCards = [PatientCard]()
         patientCards?.append(PatientCard(date: "10.01.2015", recognition: "Przeziębienie", weight: nil, height: nil, temperature: 38.4, pressure: (120,80), pulse: nil, medicines: "Rutinoscorbin, Aspiryna", doctor: "Lubicz"))
