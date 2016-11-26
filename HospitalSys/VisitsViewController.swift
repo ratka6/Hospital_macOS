@@ -8,22 +8,12 @@
 
 import Cocoa
 
-class ScheduledVisit {
-    let date: String
-    let doctorsName: String
-    
-    init(_ date: String, doctorsName: String) {
-        self.date = date
-        self.doctorsName = doctorsName
-    }
-}
-
 class VisitsViewController: NSViewController {
     
-    var schedule = [ScheduledVisit("27.09.2016", doctorsName: "dr Lubicz"),
-                    ScheduledVisit("28.09.2016", doctorsName: "dr Lubicz"),
-                    ScheduledVisit("29.09.2016", doctorsName: "dr Lubicz"),
-                    ScheduledVisit("30.09.2016", doctorsName: "dr Lubicz")
+    var schedule = [Appointment("27.09.2016 9.00", doctorsName: "dr Lubicz"),
+                    Appointment("28.09.2016 9.30", doctorsName: "dr Lubicz"),
+                    Appointment("29.09.2016 11.00", doctorsName: "dr Lubicz"),
+                    Appointment("30.09.2016 14.30", doctorsName: "dr Lubicz")
                     ]
     
     @IBOutlet weak var deleteButton: NSButton!
@@ -39,6 +29,8 @@ class VisitsViewController: NSViewController {
     @IBAction func makeAppointmentButtonClicked(_ sender: Any) {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let appointmentVC = storyboard.instantiateController(withIdentifier: "MakeAppointmentVC") as! NewAppointmentViewController
+        self.view.alphaValue = 0.2
+        appointmentVC.delegate = self
         self.presentViewControllerAsSheet(appointmentVC)
     }
     
@@ -106,4 +98,11 @@ extension VisitsViewController: NSTableViewDataSource {
         return schedule.count
     }
     
+}
+
+extension VisitsViewController: NewAppointmentViewControllerDelegate {
+    func didMakeNewAppointment(_ doctorsName: String, date: String) {
+        schedule.append(Appointment(date, doctorsName: doctorsName))
+        visitsTableView.reloadData()
+    }
 }
