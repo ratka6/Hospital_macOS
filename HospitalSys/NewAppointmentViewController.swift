@@ -24,7 +24,13 @@ class Doctor: NSCopying {
     
 }
 
+protocol NewAppointmentViewControllerDelegate: class {
+    func didMakeNewAppointment(_ doctorsName: String, date: String)
+}
+
 class NewAppointmentViewController: NSViewController {
+    
+    weak var delegate: NewAppointmentViewControllerDelegate?
     
     fileprivate var selectedSpecialization: String? {
         didSet {
@@ -35,12 +41,6 @@ class NewAppointmentViewController: NSViewController {
             dayComboBox.isEnabled = true
             hourComboBox.isEnabled = true
             
-        }
-    }
-    
-    fileprivate var index: Int? {
-        didSet {
-            selectedSpecialization = specialities[index!]
         }
     }
     
@@ -82,6 +82,7 @@ class NewAppointmentViewController: NSViewController {
     
     var months = [1,2,3,4,5,6,7,8,9,10,11,12]
     var days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
+    var years = ["2016", "2017", "2018"]
     
     @IBOutlet weak var specializationComboBox: NSComboBox! {
         didSet {
@@ -134,11 +135,13 @@ class NewAppointmentViewController: NSViewController {
     @IBOutlet weak var infoLabel: NSTextField!
     
     @IBAction func makeAppointmentButtonClicked(_ sender: Any) {
-        dismiss(self)
+        makeAppointment()
+        cancelButtonClicked(self)
     }
     
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
+        self.presenting?.view.alphaValue = 1.0
         dismiss(self)
     }
     override func viewDidLoad() {
@@ -171,6 +174,32 @@ class NewAppointmentViewController: NSViewController {
         
         hourComboBox.reloadData()
         
+    }
+    
+    fileprivate func makeAppointment() {
+        var doctorsName = ""
+        var date = ""
+        if doctorsNameComboBox.indexOfSelectedItem != -1 {
+            if let matching = matchingDoctors {
+                doctorsName = matching[doctorsNameComboBox.indexOfSelectedItem].name
+            }
+        }
+        if dayComboBox.indexOfSelectedItem != -1 {
+            date += "\(days[dayComboBox.indexOfSelectedItem])"
+            date += "."
+        }
+        if monthComboBox.indexOfSelectedItem != -1 {
+            date += "\(months[monthComboBox.indexOfSelectedItem])"
+            date += "."
+        }
+        if yearComboBox.indexOfSelectedItem != -1 {
+            date += years[yearComboBox.indexOfSelectedItem]
+            date += " "
+        }
+        if hourComboBox.indexOfSelectedItem != -1 {
+            date += "\(hours![hourComboBox.indexOfSelectedItem])"
+        }
+        delegate?.didMakeNewAppointment(doctorsName, date: date)
     }
     
 }
@@ -217,16 +246,7 @@ extension NewAppointmentViewController: NSComboBoxDataSource {
                 return "-"
             }
         case yearComboBox:
-            switch index {
-            case 0:
-                return "2016"
-            case 1:
-                return "2017"
-            case 2:
-                return "2018"
-            default:
-                return "-"
-            }
+            return years[index]
         case monthComboBox:
             return months[index]
         case dayComboBox:

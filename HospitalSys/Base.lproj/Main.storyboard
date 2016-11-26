@@ -737,7 +737,7 @@
             <objects>
                 <viewController storyboardIdentifier="MakeAppointmentVC" id="Yvx-JK-YrS" customClass="NewAppointmentViewController" customModule="HospitalSys" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="1Gd-Ad-UAh">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="493"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="450"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nPQ-2j-Weq">
@@ -922,7 +922,7 @@
                 </viewController>
                 <customObject id="m0O-D5-67P" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-155" y="2538.5"/>
+            <point key="canvasLocation" x="940" y="1647"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="cqb-YP-Rg7">

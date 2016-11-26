@@ -18,6 +18,8 @@ class ScheduledVisit {
     }
 }
 
+
+
 class VisitsViewController: NSViewController {
     
     var schedule = [ScheduledVisit("27.09.2016", doctorsName: "dr Lubicz"),
@@ -39,6 +41,8 @@ class VisitsViewController: NSViewController {
     @IBAction func makeAppointmentButtonClicked(_ sender: Any) {
         let storyboard = NSStoryboard(name: "Main", bundle: nil)
         let appointmentVC = storyboard.instantiateController(withIdentifier: "MakeAppointmentVC") as! NewAppointmentViewController
+        self.view.alphaValue = 0.2
+        appointmentVC.delegate = self
         self.presentViewControllerAsSheet(appointmentVC)
     }
     
@@ -106,4 +110,11 @@ extension VisitsViewController: NSTableViewDataSource {
         return schedule.count
     }
     
+}
+
+extension VisitsViewController: NewAppointmentViewControllerDelegate {
+    func didMakeNewAppointment(_ doctorsName: String, date: String) {
+        schedule.append(ScheduledVisit(date, doctorsName: doctorsName))
+        visitsTableView.reloadData()
+    }
 }
