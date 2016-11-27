@@ -27,7 +27,7 @@ class LoginViewController: NSViewController {
         
         if textFieldsAreValid() {
             print("zalogowano")
-            //WebserviceConnector.login(loginVC: self)
+            WebserviceConnector.login(loginVC: self)
             startShowingProgress()
         }
         

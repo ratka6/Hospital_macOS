@@ -19,7 +19,7 @@ class WebserviceConnector {
     
     class func login(loginVC: LoginViewController) {
         
-        let URL = NetworkingConstants.Tomek
+        let URL = NetworkingConstants.Pokemon
         
         
         
