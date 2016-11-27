@@ -14,9 +14,13 @@ class VisitsViewController: NSViewController {
                     Appointment("28.09.2016 9.30", doctorsName: "dr Lubicz"),
                     Appointment("29.09.2016 11.00", doctorsName: "dr Lubicz"),
                     Appointment("30.09.2016 14.30", doctorsName: "dr Lubicz")
-                    ]
+    ]
+    
+    fileprivate var login: Int64?
+    fileprivate var rowToDelete: Int?
     
     @IBOutlet weak var deleteButton: NSButton!
+    @IBOutlet weak var makeAppointmentButton: NSButton!
     
     @IBAction func deleteButtonClicked(_ sender: Any) {
         let selected = visitsTableView.selectedRow
@@ -44,9 +48,7 @@ class VisitsViewController: NSViewController {
         
         let response = alert.runModal()
         if response == NSAlertFirstButtonReturn {
-            schedule.remove(at: rowToDelete)
-            visitsTableView.reloadData()
-            
+            deleteAppointment(rowToDelete)
         }
     }
     
@@ -60,10 +62,76 @@ class VisitsViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for date in schedule {
-            print(date.date, date.doctorsName)
-        }
+        
+        setupLogin()
+        getAppointments()
         // Do view setup here.
+    }
+    
+    fileprivate func setupLogin() {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        if let login = appDelegate.loggedUser {
+            self.login = login
+        }
+    }
+    
+    fileprivate func getAppointments() {
+        if let login = login {
+            WebserviceConnector.getAppointments(visitsVC: self, login: login)
+        }
+    }
+    
+    fileprivate func deleteAppointment(_ rowToDelete: Int) {
+        self.rowToDelete = rowToDelete
+        let appointment = schedule[rowToDelete]
+        if let login = login {
+            WebserviceConnector.deleteAppointment(visitsVC: self, appointment: appointment, login: login)
+        }
+        deleteButton.isEnabled = false
+        makeAppointmentButton.isEnabled = false
+    }
+    
+    func didGetAppointments(successfully: Bool) {
+        if successfully {
+            if let row = rowToDelete {
+                schedule.remove(at: row)
+                rowToDelete = nil
+                visitsTableView.reloadData()
+            }
+        }
+        else {
+            showConnectionAlert(method: "getAppointments")
+        }
+        deleteButton.isEnabled = true
+        makeAppointmentButton.isEnabled = true
+    }
+    
+    func didDeleteAppointment(successfully: Bool) {
+        if successfully {
+            
+        }
+        else {
+            showConnectionAlert(method: "deleteAppointment")
+        }
+    }
+    
+    fileprivate func showConnectionAlert(method: String) {
+        let alert = NSAlert()
+        alert.messageText = "Błąd w połączeniu z serwerem"
+        alert.informativeText = "Sprawdz połączenie z internetem i kliknij OK"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        let response = alert.runModal()
+        if response == NSAlertFirstButtonReturn {
+            if method == "getAppointments" {
+                getAppointments()
+            }
+            else if method == "deleteAppointment"{
+                if let row = rowToDelete {
+                    deleteAppointment(row)
+                }
+            }
+        }
     }
     
 }

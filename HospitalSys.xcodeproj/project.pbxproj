@@ -10,6 +10,7 @@
 		2005502C1DE711B20094A400 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502B1DE711B20094A400 /* ContainerViewController.swift */; };
 		2005502E1DE711FD0094A400 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502D1DE711FD0094A400 /* LoginViewController.swift */; };
 		200550301DE7120E0094A400 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005502F1DE7120E0094A400 /* RegisterViewController.swift */; };
+		20650CE01DEB0DB0005B6F7B /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20650CDF1DEB0DB0005B6F7B /* Patient.swift */; };
 		2085A2DA1DE9A15C006AC74D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2085A2D81DE9A15C006AC74D /* HistoryViewController.swift */; };
 		2085A2DD1DE9DE98006AC74D /* PatientCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2085A2DC1DE9DE98006AC74D /* PatientCard.swift */; };
 		2085A2DF1DE9DEB9006AC74D /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2085A2DE1DE9DEB9006AC74D /* Doctor.swift */; };
@@ -51,6 +52,7 @@
 		2005502B1DE711B20094A400 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		2005502D1DE711FD0094A400 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2005502F1DE7120E0094A400 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		20650CDF1DEB0DB0005B6F7B /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		2085A2D81DE9A15C006AC74D /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		2085A2DC1DE9DE98006AC74D /* PatientCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatientCard.swift; sourceTree = "<group>"; };
 		2085A2DE1DE9DEB9006AC74D /* Doctor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				2085A2DC1DE9DE98006AC74D /* PatientCard.swift */,
 				2085A2DE1DE9DEB9006AC74D /* Doctor.swift */,
 				2085A2E01DE9DF2A006AC74D /* Appointment.swift */,
+				20650CDF1DEB0DB0005B6F7B /* Patient.swift */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				2005502C1DE711B20094A400 /* ContainerViewController.swift in Sources */,
 				20D191981DE8635B00C9169F /* WebserviceConnector.swift in Sources */,
 				20C38D101DE8A35A008C5517 /* NewAppointmentViewController.swift in Sources */,
+				20650CE01DEB0DB0005B6F7B /* Patient.swift in Sources */,
 				20C38D0D1DE8826D008C5517 /* VisitsViewController.swift in Sources */,
 				20BC4D7C1DE5D33E00987C2C /* HospitalSys.xcdatamodeld in Sources */,
 			);

@@ -12,14 +12,18 @@ import Alamofire
 private enum NetworkingConstants {
     static let Pokemon = "http://www.recipepuppy.com/api/?i=onions,garlic&q=omelet&p=3"
     static let Tomek = "http://192.168.0.17:8080/test/get"
-    static let AddPatient = "http://192.168.0.17:8080/test/add"
+    static let Login = ""
+    static let RegisterPatient = "http://192.168.0.17:8080/test/add"
+    static let CreateAccount = ""
+    static let GetAppointments = ""
+    static let DeleteAppointment = ""
 }
 
 class WebserviceConnector {
     
-    class func login(loginVC: LoginViewController) {
+    class func login(loginVC: LoginViewController, login: Int64, password: String) {
         
-        let URL = NetworkingConstants.Pokemon
+        let URL = NetworkingConstants.Login
         
         
         
@@ -30,40 +34,106 @@ class WebserviceConnector {
                 
                 guard response.result.isSuccess else {
                     print("Login Error \(response.result.error!)")
-                    loginVC.loginUnsuccessful()
+                    loginVC.didLogin(successfully: false)
                     return
                 }
                 
                 print(response.result.value)
-                loginVC.loginSuccessful()
+                
+                let appDelegate = NSApplication.shared().delegate as! AppDelegate
+                appDelegate.loggedUser = login
+                
+                loginVC.didLogin(successfully: true)
+                
+                
         }
     }
     
-    class func register(registerVC: RegisterViewController) {
+    class func register(registerVC: RegisterViewController, patient: Patient, password: String) {
         
-        let URL = NetworkingConstants.AddPatient
+        let URL = NetworkingConstants.RegisterPatient
         
-        let parameters: Parameters = [
-            "pesel": 91012351,
-            "firstName": "Krzysztof",
-            "lastName": "Fryzlewicz",
-            "gender": "Man",
-            "street": "Na Brzegu",
-            "city": "Kraków",
-            "phone": 515515,
-            "email": "ratka6@gmail.com"
-        ]
         
-        Alamofire.request(URL, method: .put, parameters: parameters, encoding: JSONEncoding.default, headers: nil)
+        Alamofire.request(URL, method: .put, parameters: patient.getParameters(), encoding: JSONEncoding.default, headers: nil)
             .validate()
             .responseJSON {
                 (response) in
-                print(response.response?.statusCode)
+                
                 guard response.result.isSuccess else {
-                    print("Register Error \(response.result.error!)")
+                    registerVC.didCreateAccount(successfully: false)
+                    print("Patient register Error \(response.result.error!)")
                     return
                 }
                 
+                self.createAccount(registerVC: registerVC, login: patient.pesel, password: password)
+                print(response.result.value)
+        }
+    }
+    
+    class func createAccount(registerVC: RegisterViewController, login: Int64, password: String) {
+        let URL = NetworkingConstants.CreateAccount
+        
+        let params: Parameters = [
+            "login": login,
+            "password": password
+        ]
+        
+        Alamofire.request(URL, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    registerVC.didCreateAccount(successfully: false)
+                    print("Account register Error \(response.result.error!)")
+                    return
+                }
+                
+                registerVC.didCreateAccount(successfully: true)
+        }
+    }
+    
+    class func getAppointments(visitsVC: VisitsViewController, login: Int64) {
+        
+        let URL = NetworkingConstants.GetAppointments
+        
+        Alamofire.request(URL)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    print("Get appointments Error \(response.result.error!)")
+                    return
+                }
+                
+                
+        }
+    }
+    
+    class func deleteAppointment(visitsVC: VisitsViewController, appointment: Appointment, login: Int64) {
+        
+        let URL = NetworkingConstants.DeleteAppointment
+        
+        let params: Parameters = [
+            "login": login,
+            "date": appointment.date,
+            "doctor": appointment.doctorsName
+        ]
+        
+        
+        Alamofire.request(URL, method: .delete, parameters: params, encoding: JSONEncoding.default, headers: nil)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    visitsVC.didDeleteAppointment(successfully: false)
+                    print("Patient register Error \(response.result.error!)")
+                    return
+                }
+                
+                visitsVC.didDeleteAppointment(successfully: true)
                 print(response.result.value)
         }
     }

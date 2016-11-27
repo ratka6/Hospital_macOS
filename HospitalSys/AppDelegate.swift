@@ -12,6 +12,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     var httpMethods: [String]?
+    var loggedUser: Int64?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let file = "file.txt"

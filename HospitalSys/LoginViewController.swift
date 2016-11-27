@@ -27,7 +27,7 @@ class LoginViewController: NSViewController {
         
         if textFieldsAreValid() {
             print("zalogowano")
-            WebserviceConnector.login(loginVC: self)
+            WebserviceConnector.login(loginVC: self, login: Int64(usernameTextField.stringValue)!, password: passwordTextField.stringValue)
             startShowingProgress()
         }
         
@@ -39,6 +39,9 @@ class LoginViewController: NSViewController {
         loginButton.isEnabled = false
         infoLabel.textColor = NSColor(red: 127.0/255.0, green: 170.0/255.0, blue: 171.0/255.0, alpha: 1)
         infoLabel.stringValue = "Logowanie..."
+        usernameTextField.isEnabled = false
+        passwordTextField.isEnabled = false
+        loginButton.isEnabled = false
     }
     
     
@@ -47,25 +50,25 @@ class LoginViewController: NSViewController {
         progressIndicator.isHidden = true
         loginButton.isEnabled = true
         infoLabel.textColor = NSColor.red
+        usernameTextField.isEnabled = true
+        passwordTextField.isEnabled = true
+        loginButton.isEnabled = true
     }
     
-    func loginSuccessful() {
-        print("login successful")
+    func didLogin(successfully: Bool) {
+        if successfully {
+            print("login successful")
+            stopShowingProgress()
+            containerVC?.loginSuccessful()
+        }
+        else {
+            print("login unsuccessful")
+            stopShowingProgress()
+            infoLabel.stringValue = "PESEL albo hasło niepoprawne"
+        }
         stopShowingProgress()
-        containerVC?.loginSuccessful()
     }
-    
-    func loginUnsuccessful() {
-        print("login unsuccessful")
-        stopShowingProgress()
-        infoLabel.stringValue = "Nie udało się zalogować"
-    }
-    
-    deinit {
-        print("login deinit")
-    }
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLabel.stringValue = ""
@@ -76,7 +79,7 @@ class LoginViewController: NSViewController {
     
     fileprivate func textFieldsAreValid() -> Bool{
         guard !usernameTextField.stringValue.isEmpty else {
-            infoLabel.stringValue = "Wprowadź login"
+            infoLabel.stringValue = "Wprowadź PESEL"
             return false
         }
         

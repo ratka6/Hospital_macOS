@@ -26,16 +26,25 @@ class RegisterViewController: NSViewController {
     
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        //WebserviceConnector.register(registerVC: self)
         if textFieldsAreValid() {
-            print("zarejestrowano")
-            
+            print("rejestracja...")
+            let patient = Patient(pesel: Int64(peselTextField.stringValue)!, firstName: firstNameTextField.stringValue, lastName: lastNameTextField.stringValue, gender: (sexButton.selectedItem?.title)!, street: streetTextField.stringValue, city: cityTextField.stringValue, phone: Int64(phoneNumberTextField.stringValue)!, email: emailTextField.stringValue)
+            WebserviceConnector.register(registerVC: self, patient: patient, password: passwordTextField.stringValue)
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLabel.stringValue = ""
+    }
+    
+    func didCreateAccount(successfully: Bool) {
+        if successfully {
+            infoLabel.stringValue = "Utworzono konto!"
+        }
+        else {
+            infoLabel.stringValue = "Użytkownik o tych danych już istnieje!"
+        }
     }
     
 
