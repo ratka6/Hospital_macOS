@@ -135,11 +135,6 @@ class NewAppointmentViewController: NSViewController {
         infoLabel.stringValue = ""
         progressIndicator.isHidden = true
         setup()
-        if let doctors = doctors {
-            for doctor in doctors {
-                print(doctor.name, doctor.specialization)
-            }
-        }
         // Do view setup here.
     }
     

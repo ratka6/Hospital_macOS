@@ -26,9 +26,10 @@ class RegisterViewController: NSViewController {
     
     
     @IBAction func registerButtonTapped(_ sender: Any) {
-        
+        //WebserviceConnector.register(registerVC: self)
         if textFieldsAreValid() {
             print("zarejestrowano")
+            
         }
     }
     
@@ -37,6 +38,7 @@ class RegisterViewController: NSViewController {
         infoLabel.stringValue = ""
     }
     
+
     fileprivate func textFieldsAreValid() -> Bool{
         guard !peselTextField.stringValue.isEmpty else {
             infoLabel.stringValue = "Wprowadź PESEL"
