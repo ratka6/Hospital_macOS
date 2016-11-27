@@ -19,6 +19,7 @@ private enum NetworkingConstants {
     static let DeleteAppointment = ""
     static let GetDoctors = ""
     static let MakeNewAppointment = ""
+    static let GetHistory = ""
 }
 
 class WebserviceConnector {
@@ -191,7 +192,29 @@ class WebserviceConnector {
                     return
                 }
                 
-                newAppointmentVC.didMakeAppointment(successfully: true)
+                newAppointmentVC.didMakeAppointment(successfully: true, reserved: true)
+        }
+    }
+    
+    class func getHistory(historyVC: HistoryViewController, login: Int64) {
+        
+        let URL = NetworkingConstants.GetHistory
+        
+        Alamofire.request(URL)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    historyVC.didUpdateData(successfully: false)
+                    print("Get history Error \(response.result.error!)")
+                    return
+                }
+                
+                let patientCards = [PatientCard]()
+                historyVC.patientCards = patientCards
+                
+                
         }
     }
     

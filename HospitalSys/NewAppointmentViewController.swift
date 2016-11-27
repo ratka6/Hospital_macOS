@@ -135,31 +135,41 @@ class NewAppointmentViewController: NSViewController {
         WebserviceConnector.getDoctors(newAppointmentVC: self)
     }
     
+    func didUpdateData(succesfully: Bool) {
+        if succesfully {
+            specializationComboBox.reloadData()
+            doctorsNameComboBox.reloadData()
+        }
+        else {
+            showConnectionAlert(method: "getData")
+        }
+    }
+    
     fileprivate func setup() {
-//        specializations = [
-//            "Pediatra",
-//            "Internista",
-//            "Laryngolog",
-//            "Urolog"
-//        ]
-//        
-//        let names = [
-//            "Lubicz",
-//            "Iwanowicz",
-//            "Góra",
-//            "Fryźlewicz",
-//            "Who"
-//        ]
-//        
-//        specializationComboBox.reloadData()
-//        var index: Int
-//        doctors = [Doctor]()
-//        for j in 0..<specializations!.count {
-//            for i in 0...5 {
-//                index = Int(arc4random()) % names.count
-//                doctors?.append(Doctor("\(names[index])\(i)", specialization: specializations![j]))
-//            }
-//        }
+        //        specializations = [
+        //            "Pediatra",
+        //            "Internista",
+        //            "Laryngolog",
+        //            "Urolog"
+        //        ]
+        //
+        //        let names = [
+        //            "Lubicz",
+        //            "Iwanowicz",
+        //            "Góra",
+        //            "Fryźlewicz",
+        //            "Who"
+        //        ]
+        //
+        //        specializationComboBox.reloadData()
+        //        var index: Int
+        //        doctors = [Doctor]()
+        //        for j in 0..<specializations!.count {
+        //            for i in 0...5 {
+        //                index = Int(arc4random()) % names.count
+        //                doctors?.append(Doctor("\(names[index])\(i)", specialization: specializations![j]))
+        //            }
+        //        }
         hours = [String]()
         for hour in 9...16 {
             hours?.append("\(hour).00")
@@ -170,14 +180,19 @@ class NewAppointmentViewController: NSViewController {
         
     }
     
-    func didMakeAppointment(successfully: Bool) {
+    func didMakeAppointment(successfully: Bool, reserved: Bool = false) {
         if successfully {
-            if let app = appointment {
-                delegate?.didMakeNewAppointment(app.doctorsName, date: app.date)
+            if reserved {
+                infoLabel.stringValue = "Termin zarezerwowany!"
+            }
+            else {
+                if let app = appointment {
+                    delegate?.didMakeNewAppointment(app.doctorsName, date: app.date)
+                }
             }
         }
         else {
-            showConnectionAlert()
+            showConnectionAlert(method: "makeAppointment")
         }
         hideProgressIndicator()
     }
@@ -215,7 +230,7 @@ class NewAppointmentViewController: NSViewController {
         
     }
     
-    fileprivate func showConnectionAlert() {
+    fileprivate func showConnectionAlert(method: String) {
         let alert = NSAlert()
         alert.messageText = "Błąd w połączeniu z serwerem"
         alert.informativeText = "Sprawdz połączenie z internetem i kliknij OK"
@@ -223,7 +238,12 @@ class NewAppointmentViewController: NSViewController {
         alert.addButton(withTitle: "OK")
         let response = alert.runModal()
         if response == NSAlertFirstButtonReturn {
-            makeAppointment()
+            if method == "makeAppointment" {
+                makeAppointment()
+            }
+            else if method == "getData" {
+                getData()
+            }
         }
     }
     

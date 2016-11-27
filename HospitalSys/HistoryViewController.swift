@@ -35,7 +35,33 @@ class HistoryViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadFakeData()
+        getData()
         // Do view setup here.
+    }
+    
+    fileprivate func getData() {
+        let appDelegate = NSApplication.shared().delegate as! AppDelegate
+        if let login = appDelegate.loggedUser {
+            WebserviceConnector.getHistory(historyVC: self, login: login)
+        }
+    }
+    
+    func didUpdateData(successfully: Bool) {
+        if !successfully {
+            showConnectionAlert()
+        }
+    }
+    
+    fileprivate func showConnectionAlert() {
+        let alert = NSAlert()
+        alert.messageText = "Błąd w połączeniu z serwerem"
+        alert.informativeText = "Sprawdz połączenie z internetem i kliknij OK"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        let response = alert.runModal()
+        if response == NSAlertFirstButtonReturn {
+            getData()
+        }
     }
     
     
