@@ -745,9 +745,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9hH-k8-NeV">
-                                        <rect key="frame" x="18" y="397" width="134" height="17"/>
+                                        <rect key="frame" x="18" y="397" width="52" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lekarz (opcjonalnie): " id="FUw-qD-oAg">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Lekarz: " id="FUw-qD-oAg">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -910,10 +910,12 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="MNX-hj-fl4" id="wxk-wm-CSh"/>
                         <outlet property="dayComboBox" destination="XHd-DP-p5j" id="6yX-7O-dme"/>
                         <outlet property="doctorsNameComboBox" destination="n2R-vH-Bp4" id="lPE-qP-Zj8"/>
                         <outlet property="hourComboBox" destination="vnh-qW-NT9" id="yBD-rQ-V3z"/>
                         <outlet property="infoLabel" destination="9HG-yx-oVA" id="kXs-jM-i3c"/>
+                        <outlet property="makeAppointmentButton" destination="Xch-DA-2bW" id="eo1-8Y-0hg"/>
                         <outlet property="monthComboBox" destination="Gf2-HX-Bsk" id="BQ7-MK-8ff"/>
                         <outlet property="progressIndicator" destination="zch-XN-PNa" id="dOa-Qn-IZU"/>
                         <outlet property="specializationComboBox" destination="jSN-JT-AOV" id="9wr-Zp-dfc"/>

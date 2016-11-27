@@ -18,6 +18,10 @@ class NewAppointmentViewController: NSViewController {
     
     weak var delegate: NewAppointmentViewControllerDelegate?
     
+    var login: Int64?
+    
+    fileprivate var appointment: Appointment?
+    
     fileprivate var selectedSpecialization: String? {
         didSet {
             matchingDoctors = doctors?.filter({$0.specialization == selectedSpecialization})
@@ -30,27 +34,14 @@ class NewAppointmentViewController: NSViewController {
         }
     }
     
-    fileprivate var selectedName: String?
-    fileprivate var selectedYear: String?
-    fileprivate var selectedMonth: String?
-    fileprivate var selectedDay: String?
-    fileprivate var selectedHour: String?
+    fileprivate var selectedMonth: Int?
     
-    var specialities = [
-        "Pediatra",
-        "Internista",
-        "Laryngolog",
-        "Urolog"
-    ]
-    
-    var names = [
-        "Lubicz",
-        "Iwanowicz",
-        "Góra",
-        "Fryźlewicz",
-        "Who"
-    ]
-    
+    var specializations: [String]? {
+        didSet {
+            specializationComboBox.reloadData()
+        }
+    }
+    var doctors: [Doctor]?
     
     var matchingDoctors: [Doctor]? {
         didSet {
@@ -63,8 +54,6 @@ class NewAppointmentViewController: NSViewController {
             hourComboBox.reloadData()
         }
     }
-    
-    var doctors: [Doctor]?
     
     var months = [1,2,3,4,5,6,7,8,9,10,11,12]
     var days = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]
@@ -116,7 +105,8 @@ class NewAppointmentViewController: NSViewController {
         }
     }
     
-    
+    @IBOutlet weak var makeAppointmentButton: NSButton!
+    @IBOutlet weak var cancelButton: NSButton!
     @IBOutlet weak var progressIndicator: NSProgressIndicator!
     @IBOutlet weak var infoLabel: NSTextField!
     
@@ -130,23 +120,46 @@ class NewAppointmentViewController: NSViewController {
         self.presenting?.view.alphaValue = 1.0
         dismiss(self)
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         infoLabel.stringValue = ""
         progressIndicator.isHidden = true
+        getData()
         setup()
         // Do view setup here.
     }
     
+    fileprivate func getData() {
+        WebserviceConnector.getDoctors(newAppointmentVC: self)
+    }
+    
     fileprivate func setup() {
-        var index: Int
-        doctors = [Doctor]()
-        for j in 0..<specialities.count {
-            for i in 0...5 {
-                index = Int(arc4random()) % names.count
-                doctors?.append(Doctor("\(names[index])\(i)", specialization: specialities[j]))
-            }
-        }
+//        specializations = [
+//            "Pediatra",
+//            "Internista",
+//            "Laryngolog",
+//            "Urolog"
+//        ]
+//        
+//        let names = [
+//            "Lubicz",
+//            "Iwanowicz",
+//            "Góra",
+//            "Fryźlewicz",
+//            "Who"
+//        ]
+//        
+//        specializationComboBox.reloadData()
+//        var index: Int
+//        doctors = [Doctor]()
+//        for j in 0..<specializations!.count {
+//            for i in 0...5 {
+//                index = Int(arc4random()) % names.count
+//                doctors?.append(Doctor("\(names[index])\(i)", specialization: specializations![j]))
+//            }
+//        }
         hours = [String]()
         for hour in 9...16 {
             hours?.append("\(hour).00")
@@ -156,6 +169,20 @@ class NewAppointmentViewController: NSViewController {
         hourComboBox.reloadData()
         
     }
+    
+    func didMakeAppointment(successfully: Bool) {
+        if successfully {
+            if let app = appointment {
+                delegate?.didMakeNewAppointment(app.doctorsName, date: app.date)
+            }
+        }
+        else {
+            showConnectionAlert()
+        }
+        hideProgressIndicator()
+    }
+    
+    
     
     fileprivate func makeAppointment() {
         var doctorsName = ""
@@ -180,7 +207,38 @@ class NewAppointmentViewController: NSViewController {
         if hourComboBox.indexOfSelectedItem != -1 {
             date += "\(hours![hourComboBox.indexOfSelectedItem])"
         }
-        delegate?.didMakeNewAppointment(doctorsName, date: date)
+        appointment = Appointment(date, doctorsName: doctorsName)
+        if let app = appointment, let login = login {
+            WebserviceConnector.makeNewAppointment(newAppointmentVC: self, appointment: app, login: login)
+            showProgressIndicator()
+        }
+        
+    }
+    
+    fileprivate func showConnectionAlert() {
+        let alert = NSAlert()
+        alert.messageText = "Błąd w połączeniu z serwerem"
+        alert.informativeText = "Sprawdz połączenie z internetem i kliknij OK"
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: "OK")
+        let response = alert.runModal()
+        if response == NSAlertFirstButtonReturn {
+            makeAppointment()
+        }
+    }
+    
+    fileprivate func showProgressIndicator() {
+        progressIndicator.isHidden = false
+        progressIndicator.startAnimation(self)
+        makeAppointmentButton.isEnabled = false
+        cancelButton.isEnabled = false
+    }
+    
+    fileprivate func hideProgressIndicator() {
+        progressIndicator.isHidden = true
+        progressIndicator.stopAnimation(self)
+        makeAppointmentButton.isEnabled = true
+        cancelButton.isEnabled = true
     }
     
 }
@@ -188,7 +246,9 @@ class NewAppointmentViewController: NSViewController {
 extension NewAppointmentViewController: NSComboBoxDataSource {
     func numberOfItems(in comboBox: NSComboBox) -> Int {
         if comboBox === specializationComboBox {
-            return specialities.count
+            if let specs = specializations {
+                return specs.count
+            }
         }
         else if comboBox === doctorsNameComboBox {
             if let docs = matchingDoctors {
@@ -210,15 +270,15 @@ extension NewAppointmentViewController: NSComboBoxDataSource {
         else if comboBox === hourComboBox {
             return hours?.count ?? 0
         }
-        else {
-            return 0
-        }
+        return 0
     }
     
     func comboBox(_ comboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
         switch comboBox {
         case specializationComboBox:
-            return specialities[index]
+            if let specs = specializations {
+                return specs[index]
+            }
         case doctorsNameComboBox:
             if let docs = matchingDoctors {
                 return docs[index].name
@@ -242,6 +302,7 @@ extension NewAppointmentViewController: NSComboBoxDataSource {
         default:
             return "-"
         }
+        return "-"
     }
     
     
@@ -254,7 +315,9 @@ extension NewAppointmentViewController: NSComboBoxDelegate {
             print("yes!")
             let i = specializationComboBox.indexOfSelectedItem
             if i != -1 {
-                selectedSpecialization = specialities[i]
+                if let specs = specializations {
+                    selectedSpecialization = specs[i]
+                }
                 let j = doctorsNameComboBox.indexOfSelectedItem
                 if j != -1 {
                     doctorsNameComboBox.deselectItem(at: j)

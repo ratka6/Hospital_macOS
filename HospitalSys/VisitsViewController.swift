@@ -35,6 +35,7 @@ class VisitsViewController: NSViewController {
         let appointmentVC = storyboard.instantiateController(withIdentifier: "MakeAppointmentVC") as! NewAppointmentViewController
         self.view.alphaValue = 0.2
         appointmentVC.delegate = self
+        appointmentVC.login = self.login
         self.presentViewControllerAsSheet(appointmentVC)
     }
     
@@ -81,6 +82,16 @@ class VisitsViewController: NSViewController {
         }
     }
     
+    func didGetAppointments(successfully: Bool) {
+        if successfully {
+            visitsTableView.reloadData()
+        }
+        else {
+            showConnectionAlert(method: "getAppointments")
+        }
+        
+    }
+    
     fileprivate func deleteAppointment(_ rowToDelete: Int) {
         self.rowToDelete = rowToDelete
         let appointment = schedule[rowToDelete]
@@ -91,7 +102,7 @@ class VisitsViewController: NSViewController {
         makeAppointmentButton.isEnabled = false
     }
     
-    func didGetAppointments(successfully: Bool) {
+    func didDeleteAppointment(successfully: Bool) {
         if successfully {
             if let row = rowToDelete {
                 schedule.remove(at: row)
@@ -100,19 +111,10 @@ class VisitsViewController: NSViewController {
             }
         }
         else {
-            showConnectionAlert(method: "getAppointments")
+            showConnectionAlert(method: "deleteAppointment")
         }
         deleteButton.isEnabled = true
         makeAppointmentButton.isEnabled = true
-    }
-    
-    func didDeleteAppointment(successfully: Bool) {
-        if successfully {
-            
-        }
-        else {
-            showConnectionAlert(method: "deleteAppointment")
-        }
     }
     
     fileprivate func showConnectionAlert(method: String) {

@@ -17,6 +17,8 @@ private enum NetworkingConstants {
     static let CreateAccount = ""
     static let GetAppointments = ""
     static let DeleteAppointment = ""
+    static let GetDoctors = ""
+    static let MakeNewAppointment = ""
 }
 
 class WebserviceConnector {
@@ -103,9 +105,15 @@ class WebserviceConnector {
                 (response) in
                 
                 guard response.result.isSuccess else {
+                    visitsVC.didGetAppointments(successfully: false)
                     print("Get appointments Error \(response.result.error!)")
                     return
                 }
+                
+                //PARSE TO [Appointment] !!
+                var appointments = [Appointment]()
+                visitsVC.schedule = appointments
+                visitsVC.didGetAppointments(successfully: true)
                 
                 
         }
@@ -137,4 +145,55 @@ class WebserviceConnector {
                 print(response.result.value)
         }
     }
+    
+    class func getDoctors(newAppointmentVC: NewAppointmentViewController) {
+        
+        let URL = NetworkingConstants.GetDoctors
+        
+        Alamofire.request(URL)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    print("Get doctors Error \(response.result.error!)")
+                    return
+                }
+                //Parse specializations!
+                var doctors = [Doctor]()
+                var specializations = Set<String>()
+                for doc in doctors {
+                    specializations.insert(doc.specialization)
+                }
+                newAppointmentVC.specializations = specializations.map({$0})
+                newAppointmentVC.doctors = doctors
+                
+        }
+    }
+    
+    class func makeNewAppointment(newAppointmentVC: NewAppointmentViewController, appointment: Appointment, login: Int64) {
+        let URL = NetworkingConstants.CreateAccount
+        
+        let params: Parameters = [
+            "login": login,
+            "date": appointment.date,
+            "doctor": appointment.doctorsName
+        ]
+        
+        Alamofire.request(URL, method: .put, parameters: params, encoding: JSONEncoding.default, headers: nil)
+            .validate()
+            .responseJSON {
+                (response) in
+                
+                guard response.result.isSuccess else {
+                    newAppointmentVC.didMakeAppointment(successfully: false)
+                    print("Make new appointment Error \(response.result.error!)")
+                    return
+                }
+                
+                newAppointmentVC.didMakeAppointment(successfully: true)
+        }
+    }
+    
+    
 }
